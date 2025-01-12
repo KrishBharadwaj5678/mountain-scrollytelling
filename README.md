@@ -1,9 +1,5 @@
 # 🌄 Scrolling Mountain Animation  
 
-**A mesmerizing web experience that brings mountain landscapes to life as you scroll!**  
-This project leverages **GSAP** and **ScrollTrigger** to create a smooth, frame-by-frame scrolling animation on a dynamic canvas.
----
-
 ## 🚀 How It Works  
 
 - **Frame-by-Frame Animation:**  
