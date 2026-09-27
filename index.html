@@ -1,106 +1,192 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <title>Scrolling Mountain Animation</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
 
-  <div class="w-full bg-zinc-900">
-    <div class="parent relative top-0 left-0 w-full h-[700vh]">
-        <div class="w-full sticky top-0 left-0 h-screen">
-           <canvas class="w-full h-screen" id="frame"></canvas>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./style.css" />
+
+    <title>Scroll Scrub</title>
+
+    <!-- Favicon -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="./assets/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/favicon/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="./assets/favicon/site.webmanifest" />
+  </head>
+
+  <body>
+    <!-- CUSTOM CURSOR -->
+
+    <div id="cursor"></div>
+
+    <div id="cursorFollower"></div>
+
+    <!-- LOADER -->
+
+    <div id="loader">
+      <div id="loaderPercentage">0%</div>
+
+      <div class="loader-line">
+        <div id="loaderProgress"></div>
+      </div>
+    </div>
+
+    <!-- SCROLL PROGRESS -->
+
+    <div id="progressContainer">
+      <div id="progressBar"></div>
+    </div>
+
+    <div id="progressText">0%</div>
+
+    <div id="chapter">INTRODUCTION</div>
+
+    <!-- MAIN -->
+
+    <main class="w-full bg-zinc-900">
+      <div class="parent relative top-0 left-0 w-full h-[700vh]">
+        <div class="w-full sticky top-0 left-0 h-screen overflow-hidden">
+          <!-- PARALLAX -->
+
+          <div class="parallax orb-1" data-speed="0.2"></div>
+
+          <div class="parallax orb-2" data-speed="-0.15"></div>
+
+          <div class="parallax orb-3" data-speed="0.4"></div>
+
+          <div class="parallax parallax-ring" data-speed="-0.3"></div>
+
+          <!-- CANVAS -->
+
+          <canvas id="frame" class="w-full h-screen"></canvas>
+
+          <!-- TEXT -->
+
+          <div class="story-text">
+            <!-- STORY 01 -->
+            <div class="story story-1">
+              <span class="story-number">01 — BEGIN</span>
+              <h2>Imagine.</h2>
+              <p>
+                Every journey begins with a single moment. Scroll to see where
+                it takes you.
+              </p>
+            </div>
+
+            <!-- STORY 02 -->
+            <div class="story story-2">
+              <span class="story-number">02 — EXPLORE</span>
+              <h2>Discover.</h2>
+              <p>
+                Leave the familiar behind and move deeper into a world shaped by
+                motion and perspective.
+              </p>
+            </div>
+
+            <!-- STORY 03 -->
+            <div class="story story-3">
+              <span class="story-number">03 — IMMERSION</span>
+              <h2>Experience.</h2>
+              <p>
+                Watch the landscape unfold, frame by frame, as technology turns
+                movement into a story.
+              </p>
+            </div>
+
+            <!-- STORY 04 -->
+            <div class="story story-4">
+              <span class="story-number">04 — THE JOURNEY</span>
+              <h2>Beyond.</h2>
+              <p>
+                There is always another horizon. Keep moving. Keep looking
+                beyond.
+              </p>
+            </div>
+          </div>
+
+          <!-- HOTSPOT 1 -->
+
+          <div
+            class="hotspot hotspot-1"
+            data-start="0.15"
+            data-end="0.35"
+            style="left: 62%; top: 38%"
+          >
+            <div class="hotspot-info">
+              <h3>Design</h3>
+
+              <p>
+                Every detail is carefully designed to create a smooth visual
+                experience.
+              </p>
+            </div>
+          </div>
+
+          <!-- HOTSPOT 2 -->
+
+          <div
+            class="hotspot hotspot-2"
+            data-start="0.40"
+            data-end="0.60"
+            style="left: 72%; top: 55%"
+          >
+            <div class="hotspot-info">
+              <h3>Technology</h3>
+
+              <p>
+                Canvas rendering and GSAP create the scroll-driven animation.
+              </p>
+            </div>
+          </div>
+
+          <!-- HOTSPOT 3 -->
+
+          <div
+            class="hotspot hotspot-3"
+            data-start="0.68"
+            data-end="0.88"
+            style="left: 40%; top: 35%"
+          >
+            <div class="hotspot-info">
+              <h3>Experience</h3>
+
+              <p>Motion and interaction work together in real time.</p>
+            </div>
+          </div>
         </div>
-    </div>     
-  </div>
-  
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
+      </div>
+    </main>
 
-  let canvas=document.querySelector('canvas');
-  let context=canvas.getContext('2d');
+    <!-- GSAP -->
 
-  let frames={
-    currentIndex:0,
-    maxIndex:727
-  }
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
-  let imageLoaded=0;
-  let images=[];
+    <!-- SCROLLTRIGGER -->
 
-  // Preload Images
-  function preloadImages(){
-    for(let i=1;frames.maxIndex>=i;i++){
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-        // Folder Containing Images
-        let imageURL= `./frames/frame_${i.toString().padStart(4,"0")}.jpg`;
+    <!-- YOUR JS -->
 
-        // Setting the image source in image tag
-        let img=new Image();
-        img.src=imageURL;
-
-        // Loading the Images
-        img.onload=()=>{
-          imageLoaded++;
-          // If all images are loaded then run this
-          if(imageLoaded===frames.maxIndex){
-              loadImages(frames.currentIndex);
-              startAnimation();
-          }
-        }
-        images.push(img);
-
-    } 
-  }
-
-  // Load Images
-  function loadImages(index){
-      if(index>=0 && index<=frames.maxIndex){
-          let img=images[index];
-          canvas.width=window.innerWidth;
-          canvas.height=window.innerHeight;
-
-          let scaleX=canvas.width/img.width;
-          let scaleY=canvas.height/img.height;
-          let scale=Math.max(scaleX,scaleY);
-
-          let newWidth=img.width*scaleX;
-          let newHeight=img.height*scaleY;
-
-          let offsetX=(canvas.width-newWidth)/2;
-          let offsetY=(canvas.height-newHeight  )/2;
-
-          context.clearRect(0,0,canvas.width,canvas.height);
-          context.imageSmoothingEnabled=true;
-          context.imageSmoothingQuality="high";
-          context.drawImage(img,offsetX,offsetY,newWidth,newHeight);
-          frames.currentIndex=index;
-      }
-    }
-
-    // Start Animation
-    function startAnimation(){
-      let t1=gsap.timeline({
-        scrollTrigger:{
-            trigger:".parent",
-            start:"top top",
-            scrub:2
-        }
-      })
-
-      t1.to(frames,{
-        currentIndex:frames.maxIndex,
-        onUpdate:function(){
-            loadImages(Math.floor(frames.currentIndex))
-        }
-      })
-    }
-
-  preloadImages();
-
-</script>
-</body>
+    <script src="./script.js"></script>
+  </body>
 </html>
